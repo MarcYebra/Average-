@@ -1,42 +1,25 @@
 Public Class WeeklyTemperatureAverage
-
-    ' Handler for the Calculate Average button
     Private Sub btnCalculateAverage_Click(sender As Object, e As EventArgs) Handles btnCalculateAverage.Click
-        ' Variables to store weekly temperatures and the sum
         Dim temperatures(4) As Double
         Dim sum As Double = 0
-
-        ' Try to parse the text boxes into the temperatures array
         Try
             temperatures(0) = Double.Parse(txtWeek1.Text)
             temperatures(1) = Double.Parse(txtWeek2.Text)
             temperatures(2) = Double.Parse(txtWeek3.Text)
             temperatures(3) = Double.Parse(txtWeek4.Text)
             temperatures(4) = Double.Parse(txtWeek5.Text)
-
-            ' Calculate the sum of temperatures
             For Each temp As Double In temperatures
                 sum += temp
             Next
-
-            ' Calculate the average temperature
             Dim average As Double = sum / temperatures.Length
-
-            ' Display the average temperature in the label
             lblAverage.Text = "Average: " & average.ToString("N2")
-
         Catch ex As FormatException
-            ' Display an error message if non-numeric values are entered
             MessageBox.Show("Please enter numeric values for all temperature readings.", "Input Error")
             lblAverage.Text = String.Empty ' Clear the average label
         End Try
     End Sub
-
-    ' Handler for the Exit button
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
-        ' Close the form
         Me.Close()
     End Sub
-
 End Class
 
